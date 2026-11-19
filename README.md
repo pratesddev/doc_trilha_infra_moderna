@@ -49,6 +49,33 @@
 
 **Critério de pronto:** consigo explicar o que acontece do `docker run` até o processo no kernel e diagnosticar um problema de rede só com `ss`/`tcpdump`/`dig`.
 
+### 📡 Recomendação de Redes (importante para o seu perfil)
+
+Você já tem base sólida de Telecom/Datacenter (TCP/IP, roteamento, VLAN, BGP etc.).  
+O foco aqui **não é reaprender redes do zero**, e sim traduzir esse conhecimento para o mundo de Cloud e Kubernetes.
+
+**O que priorizar:**
+
+| Tema | Por que é importante | Ferramentas / Comandos |
+| ------ | ---------------------- | ------------------------ |
+| **CIDR e subnetting aplicados à nuvem** | Dimensionar VPCs e subnets sem desperdiçar IPs | Calculadoras de CIDR + desenho de VPC |
+| **Security Groups vs Network ACLs** | Stateful vs Stateless — erro clássico em entrevistas | Console AWS + `aws ec2` |
+| **VPC endpoints e PrivateLink** | Evitar saída pela internet e reduzir custo de NAT | Conceito + laboratório |
+| **DNS na nuvem** | Route 53, private hosted zones, split-horizon | `dig`, `nslookup`, Route 53 |
+| **Load Balancers** | Diferença ALB (L7) vs NLB (L4) e quando usar cada um | Lab com ALB + target groups |
+| **NetworkPolicy no Kubernetes** | Controle de tráfego pod-a-pod (deny-by-default) | Calico/Cilium + `kubectl` |
+| **Diagnóstico de rede** | Saber achar o problema rápido | `ss`, `tcpdump`, `mtr`, `dig`, `curl -v`, `ip route` |
+
+**Recursos recomendados (curtos e objetivos):**
+
+- Julia Evans (zines e posts) — especialmente sobre DNS, TCP e debugging
+- Documentação oficial da AWS sobre VPC e Networking
+- Laboratórios práticos de NetworkPolicy (Killercoda ou kind + Calico)
+- Revisar apenas o que você sentir que está “enferrujado” (não precisa refazer CCNA)
+
+**Dica de ouro:**  
+Use sua experiência de Datacenter a seu favor. Em entrevistas e no portfólio, conecte conceitos clássicos (VLAN, ACL, roteamento) com os equivalentes modernos (Security Group, NetworkPolicy, Transit Gateway, Service Mesh). Isso diferencia muito.
+
 ---
 
 ## 02. Mês 2 — AWS Core
