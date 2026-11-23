@@ -28,12 +28,12 @@ Marque cada item com `[x]` conforme avançar. O formato funciona no Obsidian, no
 
 ## 🛠️ Etapa preparatória: ambiente de estudo
 
-- [ ] Criar o repositório no GitHub `lab-infra-datacenter` (uma pasta por fase)
-- [ ] Instalar VirtualBox (ou Proxmox, se tiver máquina dedicada)
-- [ ] Instalar Cisco Packet Tracer (🆓, requer cadastro na Cisco Networking Academy)
-- [ ] Instalar uma VM Linux (Ubuntu Server ou Rocky/AlmaLinux)
-- [ ] Criar um caderno de anotações (Obsidian ou Notion) com uma página por fase
-- [ ] Reservar horários fixos na agenda (mínimo de 4 blocos por semana)
+- [ X ] Criar o repositório no GitHub `lab-infra-datacenter` (uma pasta por fase)
+- [ X ] Instalar Qemu/KVM (ou Proxmox, se tiver máquina dedicada)
+- [ X ] Instalar Cisco Packet Tracer (🆓, requer cadastro na Cisco Networking Academy)
+- [ X ] Instalar uma VM Linux (Ubuntu Server ou Rocky/AlmaLinux)
+- [ X ] Criar um caderno de anotações (Obsidian ou Notion) com uma página por fase
+- [ X ] Reservar horários fixos na agenda (mínimo de 4 blocos por semana)
 
 ---
 
