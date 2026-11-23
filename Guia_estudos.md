@@ -41,12 +41,12 @@ Marque cada item com `[x]` conforme avançar. O formato funciona no Obsidian, no
 
 **Objetivo:** entender como um computador e um sistema operacional funcionam.
 
-- [ ] **1. Entender:** CPU, memória, armazenamento, BIOS/UEFI, binário e hexadecimal
-- [ ] **2. Curso:** 🆓🇧🇷 Fundação Bradesco (Escola Virtual) ou Microsoft Learn em português · 💰🇧🇷 Udemy: "Fundamentos de TI", "Introdução à infraestrutura de TI"
+- [ X ] **1. Entender:** CPU, memória, armazenamento, BIOS/UEFI, binário e hexadecimal
+- [ X ] **2. Curso:** 🆓🇧🇷 Fundação Bradesco (Escola Virtual) ou Microsoft Learn em português · 💰🇧🇷 Udemy: "Fundamentos de TI", "Introdução à infraestrutura de TI"
 - [ ] **3. Ler:** *Organização Estruturada de Computadores* (Tanenbaum), capítulos introdutórios
-- [ ] **4. Praticar:** instalar Windows e Linux em VM; explorar o BIOS/UEFI da VM
-- [ ] **5. Revisar:** resumo de 1 página sobre o caminho de um dado entre CPU, memória e disco
-- [ ] **6. Entregar:** anotações da fase no repositório
+- [ X ] **4. Praticar:** instalar Windows e Linux em VM; explorar o BIOS/UEFI da VM
+- [ X ] **5. Revisar:** resumo de 1 página sobre o caminho de um dado entre CPU, memória e disco
+- [ X ] **6. Entregar:** anotações da fase no repositório
 - [ ] **7. Certificar (opcional):** 💰 CompTIA A+ (só se precisar de base de hardware)
 
 ---
