@@ -1,331 +1,327 @@
-# 🏗️ Trilha Infra Moderna – Roteiro de Estudos
+# 🏢 Plano de Estudos: Infraestrutura Moderna para Gestão de Datacenter
 
-**Objetivo:** Transformar a experiência em Datacenter/Telecom em uma carreira em **Cloud Engineering, SRE e Platform Engineering**, com baixo custo, 3 certificações estratégicas e um portfólio no GitHub que prove raciocínio técnico.
+Guia para quem está começando do zero e quer chegar à gestão de datacenters modernos (físicos, híbridos e em nuvem).
 
-> ✅ Concluído · 🟡 Em andamento · ⏳ Planejado
-
-**Duração estimada:** 8 meses  
-**Carga semanal:** 8–12 horas  
-**Carga total:** ≈ 275 a 410 horas
+> **Duração estimada:** 9 a 12 meses, com 8 a 10 horas por semana.
+> **Pré-requisito:** nenhum. Curiosidade e disciplina bastam.
 
 ---
 
-## 📍 Visão Geral da Trilha
+## 📌 Como usar este guia
 
-| Mês | Foco principal | Ferramentas-chave | Entrega principal | Certificação |
-| ----- | ---------------- | ------------------- | ------------------- | -------------- |
-| **1** | Linux, redes aplicadas, Git, Bash/Python, Docker | Linux, Git, Docker, Bandit | Repo-base + app Dockerizada + scripts | — |
-| **2** | AWS Core (conta criada neste mês) | IAM, VPC, EC2, ALB, ASG, S3, RDS | Arquitetura 3 camadas (console + diagrama) | Preparação SAA |
-| **3** | Terraform + AWS | Terraform, módulos, remote state | Arquitetura do Mês 2 em código | **SAA** e/ou **Terraform Associate** |
-| **4** | Kubernetes fundamentos | kind/k3s, kubectl, Helm, Kustomize | App em K8s local com Helm | — |
-| **5** | Kubernetes intermediário / admin | Ingress/Gateway, PV, HPA, NetworkPolicy, RBAC | App completa + troubleshooting | Preparação CKA |
-| **6** | CI/CD + GitOps + segurança | GitHub Actions, Argo CD/Flux, Trivy, OIDC | Pipeline commit → cluster | **CKA** |
-| **7** | Observabilidade + SRE | Prometheus, Grafana, Loki, Alertmanager | SLOs, alertas por error budget, post-mortem | — |
-| **8** | Capstone + portfólio + candidaturas | Tudo integrado | Plataforma completa + documentação | Opcional (PCA / CGOA) |
-
-> **Regra de ouro:** Semanas 1–3 do mês = aprender. Semana 4 = projeto + documentação + revisão.
+1. Siga as fases **em ordem**: cada uma sustenta a seguinte.
+2. Em cada fase, estude a teoria, **pratique em laboratório** e só então avance.
+3. Faça a certificação da fase **somente se fizer sentido para sua meta**; o conhecimento vale mais que o certificado.
+4. Documente seus laboratórios em um repositório no GitHub. Isso vira portfólio.
 
 ---
 
-## 01. Mês 1 — Fundamentos (Linux, redes, Git, scripting, Docker)
+## 🗺️ Visão geral das fases
 
-**Objetivo:** Nivelar o que falta e dominar o ambiente de trabalho **sem gastar nada**.
-
-**Conteúdo essencial:**
-
-- Linux: systemd, journald, processos, permissões, `ss`, `ip`, `tcpdump`, `strace`, `dig`, `mtr`
-- Redes aplicadas à nuvem: DNS, TLS, HTTP/2, CIDR, Security Groups vs NACL
-- Git: branches, rebase, PR, conventional commits
-- Bash: funções, `set -euo pipefail`, `jq`, `curl`
-- Python básico para automação
-- Docker: imagem, container, Dockerfile, volumes, redes, Compose, multi-stage, usuário não-root, Trivy
-
-**Projeto do mês — “Fundação”:**
-
-- Repositório `infra-portfolio` com estrutura padrão
-- App simples (Node/Python/Go) dockerizada com Compose
-- 2 scripts Bash úteis (health-check, backup com rotação)
-- README completo
-
-**Critério de pronto:** consigo explicar o que acontece do `docker run` até o processo no kernel e diagnosticar um problema de rede só com `ss`/`tcpdump`/`dig`.
-
-### 📡 Recomendação de Redes (importante para o seu perfil)
-
-Você já tem base sólida de Telecom/Datacenter (TCP/IP, roteamento, VLAN, BGP etc.).  
-O foco aqui **não é reaprender redes do zero**, e sim traduzir esse conhecimento para o mundo de Cloud e Kubernetes.
-
-**O que priorizar:**
-
-| Tema | Por que é importante | Ferramentas / Comandos |
-| ------ | ---------------------- | ------------------------ |
-| **CIDR e subnetting aplicados à nuvem** | Dimensionar VPCs e subnets sem desperdiçar IPs | Calculadoras de CIDR + desenho de VPC |
-| **Security Groups vs Network ACLs** | Stateful vs Stateless — erro clássico em entrevistas | Console AWS + `aws ec2` |
-| **VPC endpoints e PrivateLink** | Evitar saída pela internet e reduzir custo de NAT | Conceito + laboratório |
-| **DNS na nuvem** | Route 53, private hosted zones, split-horizon | `dig`, `nslookup`, Route 53 |
-| **Load Balancers** | Diferença ALB (L7) vs NLB (L4) e quando usar cada um | Lab com ALB + target groups |
-| **NetworkPolicy no Kubernetes** | Controle de tráfego pod-a-pod (deny-by-default) | Calico/Cilium + `kubectl` |
-| **Diagnóstico de rede** | Saber achar o problema rápido | `ss`, `tcpdump`, `mtr`, `dig`, `curl -v`, `ip route` |
-
-**Recursos recomendados (curtos e objetivos):**
-
-- Julia Evans (zines e posts) — especialmente sobre DNS, TCP e debugging
-- Documentação oficial da AWS sobre VPC e Networking
-- Laboratórios práticos de NetworkPolicy (Killercoda ou kind + Calico)
-- Revisar apenas o que você sentir que está “enferrujado” (não precisa refazer CCNA)
-
-**Dica de ouro:**  
-Use sua experiência de Datacenter a seu favor. Em entrevistas e no portfólio, conecte conceitos clássicos (VLAN, ACL, roteamento) com os equivalentes modernos (Security Group, NetworkPolicy, Transit Gateway, Service Mesh). Isso diferencia muito.
+| Fase | Tema | Duração |
+| ------ | ------ | --------- |
+| 0 | Fundamentos de TI | 3 a 4 semanas |
+| 1 | Redes | 8 a 10 semanas |
+| 2 | Linux e servidores | 8 semanas |
+| 3 | Virtualização e armazenamento | 6 a 8 semanas |
+| 4 | Infraestrutura física do datacenter | 6 semanas |
+| 5 | Nuvem e infraestrutura como código | 8 a 10 semanas |
+| 6 | Contêineres e Kubernetes | 6 a 8 semanas |
+| 7 | Monitoramento, SRE e operações | 6 semanas |
+| 8 | Segurança, continuidade e gestão | 6 semanas |
 
 ---
 
-## 02. Mês 2 — AWS Core
+## 🔹 Fase 0: Fundamentos de TI
 
-> Crie a conta AWS **no início deste mês**. Use o Free plan, configure Budgets e MFA no root no primeiro dia.
+O que estudar
 
-**Conteúdo essencial:**
+- Como um computador funciona: CPU, memória, disco, placa-mãe, BIOS/UEFI
+- Sistemas de numeração (binário, hexadecimal)
+- Noções de sistemas operacionais (Windows e Linux)
+- Conceitos básicos de lógica e scripts simples
 
-- IAM (usuários, roles, policies, least privilege, Identity Center)
-- VPC completa (subnets públicas/privadas, IGW, NAT, route tables, SG vs NACL, VPC endpoints)
-- EC2, AMIs, EBS, user data, ALB/NLB, Auto Scaling
-- S3 (versionamento, lifecycle, policies, criptografia)
-- RDS (Single-AZ), Route 53, CloudWatch básico
-- Well-Architected Framework
+Prática
 
-**Projeto do mês — “3 camadas”:**
+- Montar e desmontar um computador (ou assistir a montagens detalhadas)
+- Instalar Windows e Linux em máquina virtual (VirtualBox)
 
-- VPC multi-AZ com subnets públicas e privadas
-- ALB → ASG (2 EC2) → RDS em subnet privada → S3
-- Acesso via **SSM Session Manager** (sem SSH aberto)
-- Diagrama + passo a passo + custo estimado
+Certificação sugerida
 
-> **Atenção a custos:** NAT Gateway, ALB e IPv4 público cobram por hora. Destrua ao final de cada sessão.
-
-**Critério de pronto:** consigo desenhar de memória uma VPC multi-AZ e justificar cada rota e cada regra de Security Group.
+- 🆓 Cursos gratuitos de fundamentos: Cisco Networking Academy (ex.: *Introduction to IT*), Microsoft Learn
+- 💰 CompTIA A+ *(opcional; útil para quem nunca teve contato com hardware)*
 
 ---
 
-## 03. Mês 3 — Terraform (IaC) aplicado à AWS
+## 🔹 Fase 1: Redes
 
-**Objetivo:** Recriar o Mês 2 como código, com boas práticas.
+A rede é o coração do datacenter. Dedique tempo extra aqui.
 
-**Conteúdo essencial:**
+O que estudar
 
-- Providers, resources, data sources, variáveis, outputs, locals, `for_each`/`count`
-- Módulos e versionamento
-- State remoto (S3) + locking
-- `terraform plan` em PR, tflint, fmt/validate, Checkov/Trivy
-- `terraform import` e drift
-- Conhecer OpenTofu
+- Modelos OSI e TCP/IP
+- Endereçamento IPv4 e IPv6, sub-redes (CIDR, VLSM)
+- Ethernet, switching, VLANs, trunking, STP
+- Roteamento: estático, OSPF e BGP (noções)
+- DNS, DHCP, NAT, firewall, VPN
+- Conceitos de datacenter: topologia **leaf-spine**, VXLAN, redundância (LACP, VRRP)
 
-**Projeto do mês — “Mês 2 em código”:**
+Prática
 
-- Estrutura `modules/` + `envs/dev`
-- Remote state + `make up` / `make down`
-- Pipeline simples de fmt + validate + plan no GitHub Actions
+- Simular redes no **Cisco Packet Tracer** (gratuito) ou **GNS3/EVE-NG**
+- Configurar VLANs, roteamento e DHCP em laboratório
+- Usar Wireshark para analisar tráfego
 
-**Certificações do mês:**
+Certificação sugerida
 
-- **AWS Solutions Architect – Associate (SAA)** → 🔴 Paga + Obrigatória
-- **HashiCorp Terraform Associate** → 🔴 Paga + Obrigatória
-
-**Critério de pronto:** destruo e recrio a arquitetura inteira com um único comando, sem tocar no console.
+- 🆓 Cisco Networking Academy: *Networking Basics* e *Switching, Routing and Wireless Essentials* (cursos gratuitos com certificado de conclusão)
+- 💰 **CompTIA Network+** (neutra de fabricante) **ou** **Cisco CCNA** (mais reconhecida no mercado e mais profunda). Escolha **uma** delas.
 
 ---
 
-## 04. Mês 4 — Kubernetes: Fundamentos
+## 🔹 Fase 2: Linux e servidores
 
-**Conteúdo essencial:**
+O que estudar
 
-- Arquitetura (control plane, kubelet, etcd, scheduler, CNI, CSI)
-- Pod, ReplicaSet, Deployment, Service, Namespace, Labels
-- ConfigMap, Secret, probes, requests/limits
-- `kubectl` fluente
-- **Helm** e **Kustomize**
-- Cluster local: kind ou k3s
+- Linha de comando, sistema de arquivos, permissões
+- Gerenciamento de usuários, processos e serviços (systemd)
+- Pacotes, logs, cron
+- Rede no Linux (ip, ss, firewalld/iptables/nftables)
+- SSH, chaves e hardening básico
+- Shell script (Bash) e introdução a Python
+- Hardware de servidor: BMC/iDRAC/iLO, RAID, fontes redundantes, firmware
 
-**Projeto do mês — “App no K8s com Helm”:**
+Prática
 
-- App com 2 serviços + banco
-- Chart Helm próprio com `values-dev.yaml`
-- Rollout e rollback documentados
+- Montar um servidor Linux (Ubuntu Server ou Rocky/AlmaLinux) em VM
+- Automatizar tarefas com scripts
+- Subir serviços: web (Nginx), DNS, banco de dados
 
-**Critério de pronto:** consigo subir um cluster do zero, fazer deploy e explicar o caminho de um request até o Pod.
+Certificação sugerida
 
----
-
-## 05. Mês 5 — Kubernetes: Intermediário / Administração (preparação CKA)
-
-**Conteúdo essencial:**
-
-- Ingress e Gateway API
-- PV/PVC/StorageClass, StatefulSet
-- HPA, PDB, taints/tolerations, affinity
-- RBAC, ServiceAccounts, NetworkPolicy, Pod Security Standards
-- Administração: kubeadm, upgrade, backup/restore do etcd
-- Troubleshooting avançado (CrashLoopBackOff, ImagePullBackOff, Pending, NotReady, DNS)
-
-**Projeto do mês — “App de produção no K8s”:**
-
-- Ingress/Gateway com TLS (cert-manager)
-- HPA, NetworkPolicy deny-by-default, RBAC mínimo
-- Relatório “5 incidentes que provoquei e como resolvi”
-
-**Critério de pronto:** resolvo cenários de troubleshooting do Killercoda/simulador em menos de 10 minutos cada.
+- 🆓 **Linux Foundation: Introduction to Linux** (curso gratuito) e Linux Journey (site gratuito)
+- 💰 **Red Hat RHCSA** (muito valorizada em ambientes corporativos) **ou** **CompTIA Linux+**
+- 💰 *Opcional:* **CompTIA Server+** (foco em hardware e administração de servidores)
 
 ---
 
-## 06. Mês 6 — CI/CD + GitOps + Supply Chain
+## 🔹 Fase 3: Virtualização e armazenamento
 
-**Conteúdo essencial:**
+O que estudar
 
-- GitHub Actions (matrix, cache, reusable workflows, environments)
-- **OIDC GitHub → AWS** (zero chaves estáticas)
-- Build → test → scan (Trivy) → push → assinar (cosign opcional)
-- GitOps com **Argo CD** ou **Flux**
-- Gestão de segredos (External Secrets, SOPS ou Sealed Secrets)
-- Estratégias de deploy (rolling, blue/green, canary)
+- Hypervisors: KVM, VMware vSphere/ESXi, Hyper-V, Proxmox
+- Conceitos: VMs, snapshots, clusters, alta disponibilidade, migração ao vivo
+- Armazenamento: DAS, NAS, SAN, iSCSI, NFS, Fibre Channel
+- RAID, SSD/NVMe, IOPS, latência, throughput
+- Backup (regra 3-2-1), replicação e recuperação de desastres
+- Conceitos de HCI (infraestrutura hiperconvergente) e Ceph
 
-**Projeto do mês — “Commit → Produção”:**
+Prática
 
-- Push no `main` → pipeline → imagem → PR automático de manifests → Argo CD sincroniza
-- Dependabot/Renovate ativos
+- Instalar **Proxmox VE** (gratuito) e criar um cluster de teste
+- Configurar um storage NFS/iSCSI
+- Testar backup e restauração de uma VM
 
-**Certificação do mês:**
+Certificação sugerida
 
-- **CKA (Certified Kubernetes Administrator)** → 🔴 Paga + Obrigatória
-
----
-
-## 07. Mês 7 — Observabilidade + SRE
-
-### Observabilidade
-
-- Prometheus (PromQL, recording rules, ServiceMonitor)
-- Grafana (dashboards como código)
-- Loki (logs) + noções de OpenTelemetry (traces)
-- Método RED/USE e os 4 golden signals
-
-### SRE
-
-- SLI, SLO, Error Budget, burn rate alerts
-- Toil e automação
-- Gestão de incidentes, on-call, runbooks
-- Post-mortem blameless
-- Capacity planning (sua vantagem de Datacenter)
-- Chaos engineering básico
-
-**Projeto do mês — “Confiabilidade”:**
-
-- Definir 2 SLIs / 2 SLOs
-- Alertas por burn rate
-- Injetar falha e simular incidente com cronômetro
-- Escrever post-mortem blameless
+- 🆓 Laboratórios e documentação oficial do Proxmox, KVM e VMware (Hands-on Labs)
+- 💰 **VMware VCP-DCV** *(somente se sua empresa-alvo usar VMware)*
 
 ---
 
-## 08. Mês 8 — Capstone + Portfólio + Candidaturas
+## 🔹 Fase 4: Infraestrutura física do datacenter
 
-### Capstone — “Plataforma completa”
+Diferencial de quem trabalha com gestão de datacenter.
 
-- Infra em Terraform (VPC + cluster + ECR)
-- Aplicação containerizada (2–3 serviços)
-- CI/CD com GitHub Actions + OIDC + scan
-- GitOps (Argo CD ou Flux)
-- Observabilidade completa (Prometheus + Grafana + Loki + Alertmanager)
-- SLOs + alertas por burn rate + runbooks
-- Diagrama de arquitetura + ADRs
-- Vídeo curto (3–5 min) demonstrando subir, usar e destruir
-- Estimativa de custo + `terraform destroy` documentado
+O que estudar
 
-### Outras atividades
+- Classificação de datacenters: **Tiers I a IV** (Uptime Institute), TIA-942
+- Energia: entrada de energia, UPS, geradores, PDUs, redundâncias (N, N+1, 2N)
+- Refrigeração: CRAC/CRAH, corredor quente e frio, contenção, free cooling, resfriamento líquido
+- **PUE** e métricas de eficiência
+- Racks, cabeamento estruturado (cobre e fibra), organização e identificação
+- Proteção contra incêndio, controle de acesso, segurança física
+- DCIM (gestão de infraestrutura de datacenter) e planejamento de capacidade
 
-- Revisar todos os READMEs e diagramas
-- Publicar artigo técnico (LinkedIn / dev.to)
-- Atualizar currículo e LinkedIn
-- 10 candidaturas/semana + simulação de entrevistas
+Prática
 
----
+- Desenhar um layout de sala técnica com 10 racks (energia, refrigeração e cabeamento)
+- Calcular carga elétrica por rack e PUE de um cenário fictício
 
-## 🏅 Certificações da Trilha (alinhadas ao README)
+Certificação sugerida
 
-**Legenda:**
-
-- 🟢 Gratuita + Recomendada
-- 🔵 Paga + Recomendada
-- 🔴 Paga + Obrigatória
-
-### Prioridade alta (fazer durante os 8 meses)
-
-| Certificação | Tipo | Custo estimado | Quando fazer |
-| -------------- | ------ | ---------------- | -------------- |
-| AWS Solutions Architect – Associate (SAA) | 🔴 Paga + Obrigatória | US$ 150 | Fim do Mês 3 |
-| HashiCorp Terraform Associate | 🔴 Paga + Obrigatória | ~US$ 70,50 + impostos | Mês 3–4 |
-| CKA (Certified Kubernetes Administrator) | 🔴 Paga + Obrigatória | US$ 445 (promoções frequentes) | Fim do Mês 6 |
-
-### Recomendadas / Opcionais
-
-| Certificação | Tipo | Custo estimado | Observação |
-| -------------- | ------ | ---------------- | ------------ |
-| AWS Cloud Practitioner | 🔵 Paga + Recomendada | US$ 100 | Opcional (pode pular se já tiver base) |
-| KCNA | 🔵 Paga + Recomendada | ~US$ 250 | Útil se faltar confiança antes da CKA |
-| LFCS | 🔵 Paga + Recomendada | US$ 445 | Bom reforço de Linux |
-| PCA (Prometheus) | 🔵 Paga + Recomendada | Verificar | Mês 8 se sobrar tempo |
-| CGOA (GitOps) | 🔵 Paga + Recomendada | Verificar | Mês 8 se sobrar tempo |
-| CKS | 🔵 Paga + Recomendada | US$ 445 | Pós-plano (exige CKA válida) |
-
-> **Estratégia:** foque em **3 certificações** (SAA + Terraform Associate + CKA). Mais que isso rouba tempo de portfólio.
+- 🆓 **Schneider Electric Data Center University** (cursos gratuitos sobre energia, refrigeração e operação)
+- 💰 **CDCP (Certified Data Centre Professional, EPI)**: ótima porta de entrada
+- 💰 **Uptime Institute ATD/AOS** (projeto e operações de Tier): para quem quer se aprofundar, é a referência do setor
 
 ---
 
-## 📂 Estrutura recomendada do portfólio
+## 🔹 Fase 5: Nuvem e infraestrutura como código
 
-```text
-infra-portfolio/
-├── README.md
-├── 01-fundacao/
-├── 02-aws-3-camadas/
-├── 03-terraform-modular/
-├── 04-k8s-helm/
-├── 05-k8s-producao/
-├── 06-gitops-pipeline/
-├── 07-observabilidade-sre/
-├── 08-capstone/
-└── docs/
-    ├── adr/
-    └── postmortems/
-```
+O que estudar
 
-Cada projeto deve ter:
+- Modelos IaaS, PaaS, SaaS; nuvem pública, privada e híbrida
+- Serviços essenciais: computação, armazenamento, rede, IAM, balanceamento
+- Custos e modelo de responsabilidade compartilhada
+- **Git** e fluxo de trabalho com GitHub
+- **Terraform** (provisionamento) e **Ansible** (configuração)
+- Introdução a CI/CD
 
-- Diagrama de arquitetura
-- Decisões técnicas (ADRs)
-- Como subir / validar / destruir
-- Custos estimados
-- Lições aprendidas
+Prática
+
+- Criar uma conta gratuita em um provedor (AWS, Azure ou Google Cloud) e montar uma VPC com VMs
+- Provisionar a mesma infraestrutura com Terraform
+- Configurar servidores com playbooks Ansible
+
+Certificação sugerida
+
+- 🆓 Treinamentos gratuitos: **AWS Skill Builder**, **Microsoft Learn**, **Google Cloud Skills Boost**
+- 💰 **AWS Cloud Practitioner** *ou* **Microsoft AZ-900** (fundamentos); depois, se quiser avançar, uma associate (ex.: AWS Solutions Architect Associate)
+- 💰 **HashiCorp Terraform Associate**
 
 ---
 
-## 💰 Controle de custos (checklist importante)
+## 🔹 Fase 6: Contêineres e Kubernetes
 
-- [ ] MFA no root + usuário administrativo via IAM Identity Center
-- [ ] AWS Budgets com alertas (US$ 5, 10 e 20)
-- [ ] Tags obrigatórias (`project`, `owner`, `env`)
-- [ ] Nenhum recurso sem `terraform destroy` no fim da sessão
-- [ ] Kubernetes **local** no dia a dia (kind/k3s). EKS só no capstone, por poucas horas
-- [ ] Revisar semanalmente: NAT Gateway, ALB, IPs públicos, volumes órfãos
-- [ ] Antes do Mês 8: decidir sobre migração para Paid plan
+O que estudar
 
-> **Atenção (2025/2026):** Contas Free Tier novas recebem créditos limitados e podem ser encerradas após 6 meses. Crie a conta só no Mês 2 e monitore de perto.
+- Docker: imagens, volumes, redes, Compose
+- Conceitos de orquestração
+- Kubernetes: Pods, Deployments, Services, Ingress, ConfigMaps/Secrets, volumes persistentes
+- Helm e noções de GitOps
+
+Prática
+
+- Conteinerizar uma aplicação simples
+- Subir um cluster local (kind, minikube ou k3s) e fazer deploy
+- Montar um cluster com k3s em 3 VMs
+
+Certificação sugerida
+
+- 🆓 Kubernetes Basics (tutoriais oficiais) e curso gratuito *Introduction to Kubernetes* (Linux Foundation)
+- 💰 **CKA (Certified Kubernetes Administrator)**: prova prática e muito respeitada
+
+---
+
+## 🔹 Fase 7: Monitoramento, SRE e operações
+
+O que estudar
+
+- Observabilidade: métricas, logs e traces
+- **Prometheus + Grafana**, Zabbix, Loki/ELK
+- SLI, SLO, SLA e error budget
+- Gestão de incidentes, postmortems e runbooks
+- ITIL (conceitos): gestão de incidentes, problemas e mudanças
+- Automação de tarefas operacionais
+
+Prática
+
+- Monitorar seu laboratório com Prometheus e Grafana e criar alertas
+- Simular um incidente e escrever um postmortem
+
+Certificação sugerida
+
+- 🆓 Livro **Site Reliability Engineering** (Google, leitura gratuita online) e cursos introdutórios de ITIL/observabilidade
+- 💰 **ITIL 4 Foundation** *(opcional; relevante para ambientes corporativos e de gestão de serviços)*
+
+---
+
+## 🔹 Fase 8: Segurança, continuidade e gestão
+
+O que estudar
+
+- Fundamentos de segurança: CIA, defesa em profundidade, segmentação, zero trust
+- IAM, gestão de vulnerabilidades e patches
+- Normas e frameworks: ISO 27001, ISO 22301 (continuidade), LGPD
+- Plano de continuidade e recuperação de desastres (RTO/RPO)
+- Gestão de fornecedores, contratos, SLAs e orçamento (CAPEX/OPEX)
+- Sustentabilidade e eficiência energética
+
+Prática
+
+- Escrever um plano de DR para o seu laboratório
+- Fazer uma análise de riscos simples de um datacenter fictício
+
+Certificação sugerida
+
+- 🆓 **Fortinet NSE 1 a 3** e **ISC2 Certified in Cybersecurity (CC)**, que tem treinamento e exame gratuitos em condições promocionais do programa (confirme a disponibilidade atual no site oficial)
+- 💰 **CompTIA Security+** (porta de entrada em segurança)
+
+---
+
+## 🏆 Resumo: certificações essenciais
+
+### 🆓 Gratuitas
+
+| Certificação / curso | Área |
+| --- | --- |
+| Cisco Networking Academy (cursos com certificado de conclusão) | Redes |
+| Linux Foundation: Introduction to Linux / Kubernetes | Linux e contêineres |
+| Schneider Electric Data Center University | Infraestrutura física |
+| AWS Skill Builder / Microsoft Learn / Google Cloud Skills Boost | Nuvem |
+| Fortinet NSE 1 a 3 | Segurança |
+| ISC2 Certified in Cybersecurity (verificar disponibilidade) | Segurança |
+
+### 💰 Pagas (priorize na ordem)
+
+| Ordem | Certificação | Por quê |
+| --- | --- | --- |
+| 1 | **CCNA** *ou* **Network+** | Base sólida de redes |
+| 2 | **RHCSA** *ou* **Linux+** | Administração Linux |
+| 3 | **CDCP** | Fundamentos de datacenter |
+| 4 | **AWS Cloud Practitioner** *ou* **AZ-900** | Nuvem |
+| 5 | **Terraform Associate** | Infraestrutura como código |
+| 6 | **CKA** | Kubernetes |
+| 7 | **Uptime Institute ATD/AOS** | Especialização em datacenter |
+
+> ⚠️ Valores, formatos e disponibilidade de exames mudam com frequência. Confira sempre o site oficial de cada certificação antes de investir.
+
+---
+
+## 🧪 Projeto final (portfólio)
+
+Monte um **mini datacenter virtual** documentado no GitHub:
+
+- Rede segmentada em VLANs (Packet Tracer ou EVE-NG)
+- Cluster Proxmox com 2 ou 3 nós e armazenamento compartilhado
+- Servidores Linux provisionados com Terraform e Ansible
+- Cluster k3s com uma aplicação em contêineres
+- Monitoramento com Prometheus e Grafana
+- Documento de **projeto físico** (energia, refrigeração, layout de racks)
+- Plano de **backup e DR** com RTO/RPO definidos
+
+---
+
+## 📚 Recursos gratuitos recomendados
+
+- **Redes:** Cisco Packet Tracer, Professor Messer (vídeos), Wireshark
+- **Linux:** Linux Journey, OverTheWire (Bandit), documentação da Red Hat
+- **Virtualização:** documentação do Proxmox, VMware Hands-on Labs
+- **Datacenter:** Schneider Electric Data Center University, materiais públicos da Uptime Institute e do Open Compute Project (OCP)
+- **Nuvem e DevOps:** documentação oficial, KodeKloud (conteúdo gratuito), Roadmap.sh
+- **SRE:** *Site Reliability Engineering* e *The SRE Workbook* (Google)
+
+---
+
+## ✅ Checklist de progresso
+
+- [ ] Fase 0: Fundamentos de TI
+- [ ] Fase 1: Redes
+- [ ] Fase 2: Linux e servidores
+- [ ] Fase 3: Virtualização e armazenamento
+- [ ] Fase 4: Infraestrutura física do datacenter
+- [ ] Fase 5: Nuvem e IaC
+- [ ] Fase 6: Contêineres e Kubernetes
+- [ ] Fase 7: Monitoramento, SRE e operações
+- [ ] Fase 8: Segurança, continuidade e gestão
+- [ ] Projeto final publicado no GitHub
 
 ---
 
 ## 💡 Dicas finais
 
-- **Portfólio > Certificação.** Mostre decisões, trade-offs, incidentes simulados e custos.
-- Sua experiência de Datacenter é um diferencial forte (capacidade, disponibilidade, mudanças, incidentes). Use isso nos projetos e nas entrevistas.
-- Cada semana deve terminar com pelo menos um commit no GitHub.
-- Documente tudo o que quebrar — esse é o valor real do repositório.
-
----
-
-⭐ Continue registrando a jornada. O progresso acumulado é o que realmente conta.
+- **Laboratório antes de certificado.** Quem pratica aprende; quem só decora esquece.
+- **Documente tudo.** Escrever o que aprendeu fixa o conteúdo e gera portfólio.
+- **Uma certificação por vez.** Evite acumular várias ao mesmo tempo.
+- **Participe de comunidades** (Discord, Reddit, grupos de Telegram/WhatsApp de infra) e acompanhe projetos open source.
+- **Revise o plano a cada trimestre.** A tecnologia muda rápido; ajuste conforme seus objetivos.
