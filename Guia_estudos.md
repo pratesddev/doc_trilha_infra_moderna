@@ -47,7 +47,7 @@ Marque cada item com `[x]` conforme avançar. O formato funciona no Obsidian, no
 - [ X ] **4. Praticar:** instalar Windows e Linux em VM; explorar o BIOS/UEFI da VM
 - [ X ] **5. Revisar:** resumo de 1 página sobre o caminho de um dado entre CPU, memória e disco
 - [ X ] **6. Entregar:** anotações da fase no repositório
-- [ ] **7. Certificar (opcional):** 💰 CompTIA A+ (só se precisar de base de hardware)
+- [ X ] **7. Certificar (opcional):** 💰 CompTIA A+ (só se precisar de base de hardware)
 
 ---
 
